@@ -16,7 +16,7 @@ class MovieController extends Controller
     public function detail_movie($id, $slug)
     {
         $movie = Movie::find($id);
-        dd($movie);
+        return view('movie_detail', compact('movie'));
     }
 }
 
