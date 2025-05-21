@@ -10,7 +10,7 @@
                 <div class="card" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{ $movie->cover_image }}" class="card-img-left-fluid" style="max-width: 150px;" alt="Poster">
+                            <img src="{{ asset($movie->cover_image) }}" class="card-img-left-fluid" style="max-width: 150px;" alt="Poster">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

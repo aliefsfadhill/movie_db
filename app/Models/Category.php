@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function movie(): HasMany
+    protected $fillable = ['category_name'];
+
+    public function movies()
     {
         return $this->hasMany(Movie::class);
     }
