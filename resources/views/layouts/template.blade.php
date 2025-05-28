@@ -22,10 +22,19 @@
               <a class="nav-link" href="/movie/create">Input Movie</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+
+          <form class="d-flex me-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-light" type="submit">Search</button>
           </form>
+
+          @if (Auth::check())
+          <form action="{{ route('logout') }}" method="POST" class="d-flex">
+            @csrf
+            <button type="submit" class="btn btn-outline-light">Logout</button>
+          </form>
+          @endif
+
         </div>
       </div>
     </nav>
