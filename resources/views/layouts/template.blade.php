@@ -50,10 +50,11 @@
     </main>
 
     <footer class="bg-success text-white text-center py-2 fixed-bottom">
-      <div class="container">
-        <small>Made by Alief SF</small>
-      </div>
-    </footer>
+  <div class="container">
+    <small>&copy; Copyright <script>document.write(new Date().getFullYear());</script>, Made by Alief Sultan Fadhillah</small>
+  </div>
+</footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   </body>

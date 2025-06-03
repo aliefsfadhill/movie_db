@@ -16,16 +16,64 @@ class MovieController extends Controller
     }
 
     public function detail_movie($id, $slug)
-    {
-        $movie = Movie::findOrFail($id);
-        return view('movie_detail', compact('movie'));
-    }
+{
+$movie = Movie::with('category')->findOrFail($id);
+return view('movie_detail', compact('movie'));
+}
 
     public function create()
-    {
-        $categories = Category::all();
-        return view('movie_form', compact('categories'));
-    }
+{
+    $categories = Category::all();
+    $movies = Movie::with('category')->latest()->get();
+
+    return view('movie_form', compact('categories', 'movies'));
+}
+
+public function list()
+{
+    $movies = Movie::with('category')->get();
+    return view('list', compact('movies'));
+}
+
+// Edit form
+public function edit($id)
+{
+    $movie = Movie::findOrFail($id);
+    $categories = Category::all();
+    return view('movie_edit', compact('movie', 'categories'));
+}
+
+// Update movie
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required',
+        'synopsis' => 'required',
+        'year' => 'required|numeric',
+        'actors' => 'required',
+        'category_id' => 'required'
+    ]);
+
+    $movie = Movie::findOrFail($id);
+    $movie->update($request->all());
+
+    return redirect('/')->with('success', 'Data movie berhasil diperbarui.');
+}
+
+
+
+// Delete movie
+public function destroy($id)
+{
+    $movie = Movie::findOrFail($id);
+    $movie->delete();
+
+    return redirect('/')->with('success', 'Data movie berhasil dihapus.');
+}
+
+
+
+
 
     public function store(Request $request)
     {

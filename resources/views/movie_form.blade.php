@@ -4,7 +4,9 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="mb-4">Tambah Movie Baru</h1>
+    <h1 class="mb-2">Tambah Movie Baru</h1>
+
+    <a href="{{ route('movie.list') }}" class="btn btn-info mb-3">Lihat Data</a>
 
     @if ($errors->any())
         <div class="alert alert-danger">

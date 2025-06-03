@@ -4,6 +4,7 @@
 
 @section('content')
     <h1>Latest Movie</h1>
+
     <div class="row">
         @foreach ($movies as $movie)
             <div class="col-lg-6 mb-3">
