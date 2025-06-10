@@ -1,61 +1,68 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Movie-DB - @yield('title', 'Homepage')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie DB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   </head>
   <body>
+    {{-- Navbar  --}}
     <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Movie DB</a>
+    <div class="container">
+        <a class="navbar-brand" href="/">Movie DB</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
+            @auth
             <li class="nav-item">
-              <a class="nav-link" href="/movie/create">Input Movie</a>
+                <a class="nav-link" href="/movie/create">Input Movie</a>
             </li>
-          </ul>
-
-          <form class="d-flex me-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">{{ Auth::user()->email }}</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-decoration-none text-white">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">Login</a>
+            </li>
+            @endauth
+        </ul>
+        <form class="d-flex" role="search">
+            <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn btn-outline-light" type="submit">Search</button>
-          </form>
-
-          @if (Auth::check())
-          <form action="{{ route('logout') }}" method="POST" class="d-flex">
-            @csrf
-            <button type="submit" class="btn btn-outline-light">Logout</button>
-          </form>
-          @endif
-
+        </form>
         </div>
-      </div>
+    </div>
     </nav>
 
-    <main class="py-4 container">
-      @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-      @endif
+    {{-- Main Content --}}
+    <div class="container my-4">
+        @yield('content')
+    </div>
 
-      @yield('content')
-    </main>
+    {{-- Footer --}}
+    <div class="bg-success text-white text-center py-2">
+        Copyright &copy; 2025 By Alief Sultan Fadhillah
+    </div>
 
-    <footer class="bg-success text-white text-center py-2 fixed-bottom">
-  <div class="container">
-    <small>&copy; Copyright <script>document.write(new Date().getFullYear());</script>, Made by Alief Sultan Fadhillah</small>
-  </div>
-</footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   </body>
 </html>

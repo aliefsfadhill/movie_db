@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     // Tampilkan form login
-    public function showLoginForm()
+    public function formLogin()
     {
-        return view('auth.login');
+        return view('login');
     }
+
 
     // Proses login
     public function login(Request $request)

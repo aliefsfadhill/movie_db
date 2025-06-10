@@ -3,23 +3,23 @@
 @section('title', 'Detail Movie')
 
 @section('content')
-    <div class="card" style="max-width: 800px; display: flex;">
-        <div class="row g-0 w-100">
-            <div class="col-md-4">
-                <div style="height: 100%; width: 100%;">
-                    <img src="{{ asset($movie->cover_image) }}"
-                         style="width: 100%; height: 100%; object-fit: cover; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
-                         alt="Poster">
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body h-100 d-flex flex-column justify-content-center">
-                    <h5 class="card-title">{{ $movie->title }}</h5>
-                    <p class="card-text">{{ $movie->synopsis }}</p>
-                    <p class="card-text">Actors: {{ $movie->actors }}</p>
-                    <p class="card-text">Category: {{ $movie->category->category_name }}</p>
-                    <p class="card-text text-body-secondary">Year: {{ $movie->year }}</p>
-                    <a href="/" class="btn btn-success mt-3 align-self-start">Back</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3"">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ asset('storage').'/'.$movie->cover_image }}" class="card-img-top" alt="{{ $movie->title }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $movie->title }}</h5>
+                            <p class="card-text">{{ $movie->synopsis }}</p>
+                            <p class="card-text">Actors : {{ $movie->actors }}</p>
+                            <p class="card-text">Category : {{ $movie->category->category_name }}</p>
+                            <p class="card-text"><small class="text-body-secondary">Year : {{ $movie->year }}</small></p>
+                            <a href="/" class="btn btn-success">Back</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
