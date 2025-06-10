@@ -45,10 +45,11 @@
             </li>
             @endauth
         </ul>
-        <form class="d-flex" role="search">
-            <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
+        <form class="d-flex" role="search" action="{{ route('searchMovie') }}" method="GET">
+    <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{ request('q') }}"/>
+    <button class="btn btn-outline-light" type="submit">Search</button>
+</form>
+
         </div>
     </div>
     </nav>

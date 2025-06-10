@@ -128,4 +128,15 @@ class MovieController extends Controller
         }
         abort(403);
     }
+
+    public function search(Request $request)
+{
+    $keyword = $request->q;
+
+    $movies = Movie::where('title', 'like', '%' . $keyword . '%')->get();
+
+    return view('search', compact('movies', 'keyword'));
+}
+
+
 }

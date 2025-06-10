@@ -27,3 +27,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/movie', [MovieController::class, 'data_movie'])->name('listMovie');
+
+Route::get('/search', [MovieController::class, 'search'])->name('searchMovie');
